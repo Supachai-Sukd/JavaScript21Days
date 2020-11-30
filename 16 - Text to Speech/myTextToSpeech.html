@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      text-align: center;
+    }
+    
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    
+      width: 100vw;
+      height: 90vh;
+    }
+    
+    img {
+      width: 500px;
+      height: 300px;
+    
+      margin: 10px;
+      box-shadow: 0 5px 5px 0 #515154;
+    
+      object-fit: cover;
+      cursor: pointer;
+    }
+    
+    .title {
+      color: #464646;
+      font-family: cursive;
+      font-size: 3em;
+    
+      margin-bottom: 0;
+    }
+    
+  </style>
+  <title>Document</title>
+</head>
+<body>
+
+  <h1 class="title">Text To Speech</h1>
+  <div class="container">
+    <img src="./img-1.jpg" alt="ฉันจะเป็นเทพโปรแกรมเมอร์" />
+    
+  </div>
+
+  
+
+  <script>
+    (() => {
+      
+      const message = new SpeechSynthesisUtterance();
+    
+      function onVoicesChanged () {
+        const voices = speechSynthesis.getVoices();
+        console.log(voices);
+        const thVoice = voices.find(voice => voice.lang === 'th-TH');
+        message.voice = thVoice;
+      }
+    
+      function onClick (event) {
+      message.text = event.target.getAttribute('alt');
+      speechSynthesis.speak(message);
+      }
+    
+      function run () {
+        speechSynthesis.addEventListener('voiceschanged', onVoicesChanged);
+    
+        const imgElems = Array.from(document.querySelectorAll('img'));
+        imgElems.forEach(imgElem => imgElem.addEventListener('click', onClick))
+      }
+    
+      run();
+    })();
+  </script>
+</body>
+</html>
