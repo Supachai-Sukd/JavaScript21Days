@@ -45,7 +45,7 @@
 
   <h1 class="title">Text To Speech</h1>
   <div class="container">
-    <img src="./img-1.jpg" alt="ฉันจะเป็นเทพโปรแกรมเมอร์" />
+    <img src="https://i.ytimg.com/vi/njeFT84hOko/hqdefault.jpg" alt="1 2 3 4 5 I hear too." />
     
   </div>
 
@@ -59,7 +59,7 @@
       function onVoicesChanged () {
         const voices = speechSynthesis.getVoices();
         console.log(voices);
-        const thVoice = voices.find(voice => voice.lang === 'th-TH');
+        const thVoice = voices.find(voice => voice.lang === 'en-EN');
         message.voice = thVoice;
       }
     
